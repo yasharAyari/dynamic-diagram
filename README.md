@@ -1,0 +1,1 @@
+# this is dynamic digram home page
