@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="author" content="hafizCo">
+  <title>this is test</title>
+  <!--[if lt IE 9]>
+    <script src="js/vendor1/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- build:css(.) css/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/persian-datepicker/dist/css/persian-datepicker-0.4.5.min.css" />
+  <link rel="stylesheet" href="bower_components/jgrowl/jquery.jgrowl.css" />
+  <link rel="stylesheet" href="bower_components/keyboard/dist/css/keyboard.min.css" />
+  <link rel="stylesheet" href="bower_components/moment-datepicker/moment-datepicker/datepicker.css" />
+  <!-- endbower -->
+
+  <!-- endbuild -->
+    <link rel="stylesheet" href="css/main-rtl.css">
+</head>
+<body style="position: relative;">
+
+  <ul class="m-contextMenu dropdown-menu" id="contextMenu">
+    <li id="edit">edit</li>
+    <li class="divider"></li>
+    <li id="delete">delete</li>
+  </ul>
+  <div class="popover top" id="popover">
+    <div class="arrow"></div>
+    <h3 class="popover-title">عنوان باکس</h3>
+    <div class="popover-content">
+      <input type="text" class="form-control" id="boxText" placeholder="متن باکس">
+      <button class="btn btn-primary" id="addText">ثبت</button>
+    </div>
+  </div>
+  <div class="popover top" id="editBox">
+    <div class="arrow"></div>
+    <h3 class="popover-title">عنوان باکس</h3>
+    <div class="popover-content">
+      <input type="text" class="form-control" id="boxEditText" placeholder="متن باکس">
+      <button class="btn btn-primary" id="editText">ثبت</button>
+    </div>
+  </div>
+
+
+<section class="container">
+  <div class="main-wrapper">
+
+    <div class="row">
+
+
+
+      <div class="col-xs-3">
+
+        <h3>
+        لیست ابزار ها
+        <btton class="btn btn-danger pull-left" id="clear">clear</btton>
+        </h3>
+        <div class="shadow-box">
+
+          <ul class="toolbar">
+            <li>
+                <span class="is-desc">مستطیل</span>
+                <span class="toolbar__item active" id="Square"></span>
+            </li>
+            <li>
+                <span class="is-desc">دایره</span>
+                <span class="toolbar__item is-circle" id="Circle"></span>
+            </li>
+            <li>
+                <span class="is-desc">مربع</span>
+                <span class="toolbar__item is-small" id="SmallSquare"></span>
+            </li>
+            <li>
+                <span class="is-desc">بیضی</span>
+                <span class="toolbar__item is-ellipse" id="Ellipse" id="Ellipse"></span>
+            </li>
+            <li>
+                <span class="is-desc">مستطیل گرد</span>
+                <span class="toolbar__item is-rounded" id="RoundSquare"></span>
+            </li>
+            <li>
+                <span class="is-desc">ذوزنقه</span>
+                <span class="toolbar__item is-trapezoid" id="Trapezoid"></span>
+            </li>
+            <li>
+                <span class="is-desc">لوزی</span>
+                <span class="toolbar__item is-diamond" id="Diamond"></span>
+            </li>
+        </ul>
+
+        </div>
+      </div>
+
+      <div class="col-xs-8">
+        <h3>چارت</h3>
+        <div class="shadow-box">
+          <canvas id="canvas" height="525" style="border: 1px solid #f00"></canvas>
+
+        </div>
+
+      </div>
+
+    </div><!-- row -->
+  </div><!-- main-wrapper -->
+
+ </section>
+
+
+ <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <script src="js/shapeTools.js"></script>
+  <script type="text/javascript">
+  window.onload = function() {
+    shapeTools.init('canvas');
+
+
+
+    var items = document.getElementsByClassName('toolbar__item');
+
+    for (var i = 0; i < items.length; i++) {
+      shapeTools.attachEvent(items, items[i]);
+    }
+
+  };
+  </script>
+</body>
+</html>

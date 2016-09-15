@@ -1,0 +1,66 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "moduleType": [
+    "amd"
+  ],
+  "authors": [
+    "yashar"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap-sass-rtl": "*",
+    "persian-datepicker": "~0.4.5",
+    "highcharts": "~4.1.7",
+    "html5shiv": "~3.7.3",
+    "jquery.nicescroll": "~3.6.0",
+    "typeahead.js": "~0.11.1",
+    "jquery-ui": "~1.11.4",
+    "sass-bootstrap": "~3.0.2",
+    "jgrowl": "~1.4.3",
+    "keyboard": "~1.25.3",
+    "sass-direction-controller": "~1.0.2",
+    "moment-datepicker": "~1.1.3",
+    "moment-jalaali": "~0.3.9",
+    "bootstrap": "~3.3.6"
+  },
+  "overrides": {
+    "sass-bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "bootstrap-sass-rtl": {
+      "main": [
+        "dist/fonts/bootstrap/glyphicons-halflings-regular.eot",
+        "dist/fonts/bootstrap/glyphicons-halflings-regular.svg",
+        "dist/fonts/bootstrap/glyphicons-halflings-regular.ttf",
+        "dist/fonts/bootstrap/glyphicons-halflings-regular.woff"
+      ]
+    },
+    "persian-datepicker": {
+      "main": [
+        "lib/persian-date.js",
+        "dist/js/persian-datepicker-0.4.5.min.js",
+        "dist/css/persian-datepicker-0.4.5.min.css"
+      ]
+    },
+    "jgrowl": {
+      "main": [
+        "jquery.jgrowl.js",
+        "jquery.jgrowl.css"
+      ]
+    },
+    "jquery": {
+      "main": "dist/jquery.min.js"
+    }
+  }
+}

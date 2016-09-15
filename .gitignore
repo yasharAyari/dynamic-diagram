@@ -1,0 +1,4 @@
+node_modules/
+app/.sass-cache
+bower_components/
+dist/
