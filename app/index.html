@@ -10,14 +10,10 @@
   <![endif]-->
   <!-- build:css(.) css/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/persian-datepicker/dist/css/persian-datepicker-0.4.5.min.css" />
-  <link rel="stylesheet" href="bower_components/jgrowl/jquery.jgrowl.css" />
-  <link rel="stylesheet" href="bower_components/keyboard/dist/css/keyboard.min.css" />
-  <link rel="stylesheet" href="bower_components/moment-datepicker/moment-datepicker/datepicker.css" />
   <!-- endbower -->
 
   <!-- endbuild -->
-    <link rel="stylesheet" href="css/main-rtl.css">
+  <link rel="stylesheet" href="css/main-rtl.css">
 </head>
 <body style="position: relative;">
 
@@ -113,9 +109,12 @@
   <script src="js/shapeTools.js"></script>
   <script type="text/javascript">
   window.onload = function() {
-    shapeTools.init('canvas');
-
-
+    shapeTools.init(
+      {
+        id: 'canvas',
+        selectedColor: '#9E7AB8'
+      }
+    );
 
     var items = document.getElementsByClassName('toolbar__item');
 

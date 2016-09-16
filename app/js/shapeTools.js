@@ -11,9 +11,6 @@ shapeTools.createPath = function(ctx, points) {
     this.ctx.lineTo(points[1].x, points[1].y);
     this.ctx.closePath();
     this.ctx.stroke();
-
-
-
 };
 shapeTools.createSquare = function(position, ctx) {
     this.x = position.x;
@@ -33,7 +30,7 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = '#9E7AB8';
+        this.ctx.strokeStyle = shapeTools.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -59,7 +56,7 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = '#9E7AB8';
+        this.ctx.strokeStyle = shapeTools.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -87,7 +84,7 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = '#9E7AB8';
+        this.ctx.strokeStyle = shapeTools.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -116,7 +113,7 @@ shapeTools.createSquare = function(position, ctx) {
       }
       if(this.selected){
         this.ctx.fillStyle = '#ccc';
-        this.ctx.strokeStyle = '#9E7AB8';
+        this.ctx.strokeStyle = shapeTools.color;
         this.ctx.lineWidth = 10;
         this.ctx.rect(this.x - 50, this.y - 25, this.width, this.height);
       }
@@ -162,7 +159,7 @@ shapeTools.createSquare = function(position, ctx) {
       }
       this.ctx.closePath();
       if(this.selected){
-        this.ctx.strokeStyle = '#9E7AB8';
+        this.ctx.strokeStyle = shapeTools.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -189,7 +186,8 @@ shapeTools.createCircle = function(position, ctx) {
       this.ctx.fillStyle = '#666';
     }
     if(this.selected){
-      this.ctx.strokeStyle = '#f00';
+      console.log(shapeTools.color);
+      this.ctx.strokeStyle = shapeTools.color;
       this.ctx.lineWidth = 10;
       this.ctx.stroke();
     }
@@ -218,7 +216,7 @@ shapeTools.createDiamond = function(position, ctx) {
       this.ctx.fillStyle = '#666';
     }
     if(this.selected){
-      this.ctx.strokeStyle = '#f00';
+      this.ctx.strokeStyle = shapeTools.color;
       this.ctx.lineWidth = 10;
       this.ctx.stroke();
     }
@@ -292,11 +290,14 @@ shapeTools.reRender = function(){
 shapeTools.shapeList = [];
 shapeTools.shape = 'Square';
 
-shapeTools.init = function(id) {
+shapeTools.init = function(options) {
   shapeTools.clear();
 
-  this.canvas = document.getElementById(id);
+  this.canvas = document.getElementById(options.id);
   this.ctx = canvas.getContext('2d');
+  this.color = options.selectedColor;
+
+  console.log(shapeTools.color)
 
   this.canvas.width = this.canvas.parentNode.offsetWidth;
   this.width = this.canvas.width;
