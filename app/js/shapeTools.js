@@ -1,4 +1,28 @@
 var shapeTools = {};
+function _css(selector, css){
+  var targets = document.querySelectorAll(selector);
+  var cssKeys = Object.keys(css);
+    for (var i = targets.length - 1; i >= 0; i--) {
+      for (var j = cssKeys.length - 1; j >= 0; j--) {
+        if(typeof(css[cssKeys[j]]) === 'number'){
+          css[cssKeys[j]] = css[cssKeys[j]] + 'px';
+        }
+        targets[i].style[cssKeys[j]] = css[cssKeys[j]];
+      }
+    }
+}
+function _getBoxSize(id){
+  var el = document.getElementById(id);
+  var el1 = el.cloneNode(true);
+  document.body.appendChild(el1);
+  el1.style.display = 'block';
+  var size = {
+    height : el1.clientHeight,
+    width : el1.clientWidth,
+  }
+  el1.remove();
+  return size;
+};
 shapeTools.createPath = function(ctx, points) {
   this.ctx = ctx;
   this.ctx.strokeStyle = '#ccc';
@@ -350,7 +374,7 @@ shapeTools.init = function(options) {
       }
       if(event.button === 2){
         setTimeout(function(){
-          $('.m-contextMenu').css({
+          _css('.m-contextMenu', {
             display: 'block',
             left: event.clientX ,
             top: event.clientY
@@ -411,10 +435,10 @@ shapeTools.clickedEdit = function(event){
     box.value = self.shapeList[self.index].text.text;
 
 
-    $("#editBox").css({
+    _css("#editBox",{
       'position':'absolute',
-      'top': self.canvas.offsetTop + self.shapeList[self.index].y - $('#popover').height() ,
-      'left': self.shapeList[self.index].x + 10 - $("#popover").width() / 2 + self.canvas.parentNode.parentNode.offsetLeft,
+      'top': self.canvas.offsetTop + self.shapeList[self.index].y - _getBoxSize('popover').height ,
+      'left': self.shapeList[self.index].x + 10 - _getBoxSize('popover').width / 2 + self.canvas.parentNode.parentNode.offsetLeft,
       'right': 'auto',
       'display': 'block'
     });
@@ -426,9 +450,8 @@ shapeTools.clickedEdit = function(event){
     }, 10);
 
     var buttonClicked = function(event){
-      console.log(self.shapeList[self.index].text);
       event.stopPropagation();
-      $("#editBox").hide();
+      _css("#editBox", {'display': 'none'});
       var innerText = box.value;
       if(innerText.length > 0){
         self.shapeList[self.index].text.text = innerText;
@@ -450,15 +473,15 @@ shapeTools.createSape = function(pos, event) {
   shapeTools.pos = pos;
   var box = document.getElementById('boxText');
   var popup = {
-    x: event.clientY,
-    y: event.clientX
+    x: event.clientX,
+    y: event.clientY
   };
 
   setTimeout(function() {
-    $("#popover").css({
+    _css("#popover",{
       'position':'absolute',
-      'top': popup.x - $("#popover").height() ,
-      'left': popup.y - $("#popover").width() / 2,
+      'top': popup.y - _getBoxSize('popover').height ,
+      'left': popup.x - _getBoxSize('popover').width / 2,
       'right': 'auto',
       'display': 'block'
     });
