@@ -13,7 +13,7 @@
   <!-- endbower -->
 
   <!-- endbuild -->
-  <link rel="stylesheet" href="css/main-ltr.css">
+  <link rel="stylesheet" href="css/main-rtl.css">
 </head>
 <body style="position: relative;">
 
@@ -24,18 +24,18 @@
   </ul>
   <div class="popover top" id="popover">
     <div class="arrow"></div>
-    <h3 class="popover-title">add shpae</h3>
+    <h3 class="popover-title">عنوان باکس</h3>
     <div class="popover-content">
-      <input type="text" class="form-control" id="boxText" placeholder="shape description">
-      <button class="btn btn-primary" id="addText">add</button>
+      <input type="text" class="form-control" id="boxText" placeholder="متن باکس">
+      <button class="btn btn-primary" id="addText">ثبت</button>
     </div>
   </div>
   <div class="popover top" id="editBox">
     <div class="arrow"></div>
-    <h3 class="popover-title">edit shape</h3>
+    <h3 class="popover-title">عنوان باکس</h3>
     <div class="popover-content">
-      <input type="text" class="form-control" id="boxEditText" placeholder="shape description">
-      <button class="btn btn-primary" id="editText">edit</button>
+      <input type="text" class="form-control" id="boxEditText" placeholder="متن باکس">
+      <button class="btn btn-primary" id="editText">ثبت</button>
     </div>
   </div>
 
@@ -50,38 +50,38 @@
       <div class="col-xs-3">
 
         <h3>
-        Tool bax
-        <btton class="btn btn-danger pull-right" id="clear">clear</btton>
+        لیست ابزار ها
+        <btton class="btn btn-danger pull-left" id="clear">clear</btton>
         </h3>
         <div class="shadow-box">
 
           <ul class="toolbar">
             <li>
-                <span class="is-desc">Rectangle</span>
+                <span class="is-desc">مستطیل</span>
                 <span class="toolbar__item active" id="Rectangle"></span>
             </li>
             <li>
-                <span class="is-desc">Circle</span>
+                <span class="is-desc">دایره</span>
                 <span class="toolbar__item is-circle" id="Circle"></span>
             </li>
             <li>
-                <span class="is-desc">Square</span>
+                <span class="is-desc">مربع</span>
                 <span class="toolbar__item is-small" id="Square"></span>
             </li>
             <li>
-                <span class="is-desc">Ellipse</span>
-                <span class="toolbar__item is-ellipse" id="Ellipse"></span>
+                <span class="is-desc">بیضی</span>
+                <span class="toolbar__item is-ellipse" id="Ellipse" id="Ellipse"></span>
             </li>
             <li>
-                <span class="is-desc">RoundSquare</span>
+                <span class="is-desc">مستطیل گرد</span>
                 <span class="toolbar__item is-rounded" id="RoundSquare"></span>
             </li>
             <li>
-                <span class="is-desc">Trapezoid</span>
+                <span class="is-desc">ذوزنقه</span>
                 <span class="toolbar__item is-trapezoid" id="Trapezoid"></span>
             </li>
             <li>
-                <span class="is-desc">Diamond</span>
+                <span class="is-desc">لوزی</span>
                 <span class="toolbar__item is-diamond" id="Diamond"></span>
             </li>
         </ul>
@@ -90,7 +90,7 @@
       </div>
 
       <div class="col-xs-8">
-        <h3>Chart</h3>
+        <h3>چارت</h3>
         <div class="shadow-box">
           <canvas id="canvas" height="525"></canvas>
 
@@ -128,7 +128,7 @@
                         "x": 250.5,
                         "y": 118,
                         "ctx": {},
-                        "text": "shape 1"
+                        "text": "شکل شماره 1"
                       }
                     },
                     {
@@ -143,7 +143,7 @@
                         "x": 404.5,
                         "y": 110,
                         "ctx": {},
-                        "text": "shape 2"
+                        "text": "شکل شماره 2"
                       }
                     },
                     {
@@ -159,7 +159,7 @@
                         "x": 529.5,
                         "y": 204,
                         "ctx": {},
-                        "text": "shape3"
+                        "text": "شکل شماره 3"
                       }
                     }
                   ]
