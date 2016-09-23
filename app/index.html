@@ -6,7 +6,7 @@
   <meta name="author" content="hafizCo">
   <title>this is test</title>
   <!--[if lt IE 9]>
-    <script src="js/vendor1/html5shiv-printshiv.min.js"></script>
+    <script src="js/vendor/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <!-- build:css(.) css/vendor.css -->
   <!-- bower:css -->
@@ -58,7 +58,7 @@
           <ul class="toolbar">
             <li>
                 <span class="is-desc">مستطیل</span>
-                <span class="toolbar__item active" id="Square"></span>
+                <span class="toolbar__item active" id="Rectangle"></span>
             </li>
             <li>
                 <span class="is-desc">دایره</span>
@@ -66,7 +66,7 @@
             </li>
             <li>
                 <span class="is-desc">مربع</span>
-                <span class="toolbar__item is-small" id="SmallSquare"></span>
+                <span class="toolbar__item is-small" id="Square"></span>
             </li>
             <li>
                 <span class="is-desc">بیضی</span>
@@ -106,21 +106,18 @@
 
  <!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
 
-  <script src="js/shapeTools.js"></script>
+  <script src="js/dynamicDiagram.js"></script>
   <script type="text/javascript">
   window.onload = function() {
-    shapeTools.init(
+    dynamicDiagram.init(
       {
         id: 'canvas',
-        selectedColor: '#9E7AB8'
+        selectedColor: '#9E7AB8',
+        shapesClass: '.toolbar__item'
       }
     );
 
-    var items = document.getElementsByClassName('toolbar__item');
-
-    for (var i = 0; i < items.length; i++) {
-      shapeTools.attachEvent(items, items[i]);
-    }
+    
 
   };
   </script>

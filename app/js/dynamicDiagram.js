@@ -1,4 +1,4 @@
-var shapeTools = {};
+var dynamicDiagram = {};
 function _css(selector, css){
   var targets = document.querySelectorAll(selector);
   var cssKeys = Object.keys(css);
@@ -23,7 +23,7 @@ function _getBoxSize(id){
   el1.remove();
   return size;
 };
-shapeTools.createPath = function(ctx, points) {
+dynamicDiagram.createPath = function(ctx, points) {
   this.ctx = ctx;
   this.ctx.strokeStyle = '#ccc';
   this.ctx.lineJoin = 'round';
@@ -36,7 +36,7 @@ shapeTools.createPath = function(ctx, points) {
     this.ctx.closePath();
     this.ctx.stroke();
 };
-shapeTools.createSquare = function(position, ctx) {
+dynamicDiagram.createRectangle = function(position, ctx) {
     this.x = position.x;
     this.y = position.y;
     this.ctx = ctx;
@@ -54,7 +54,7 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = shapeTools.color;
+        this.ctx.strokeStyle = dynamicDiagram.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -62,7 +62,7 @@ shapeTools.createSquare = function(position, ctx) {
       this.ctx.fill();
     };
   };
-  shapeTools.createSmallSquare = function(position, ctx) {
+  dynamicDiagram.createSquare = function(position, ctx) {
     this.x = position.x;
     this.y = position.y;
     this.ctx = ctx;
@@ -80,7 +80,7 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = shapeTools.color;
+        this.ctx.strokeStyle = dynamicDiagram.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -89,7 +89,7 @@ shapeTools.createSquare = function(position, ctx) {
     };
   };
 
-  shapeTools.createTrapezoid  = function(position, ctx) {
+  dynamicDiagram.createTrapezoid  = function(position, ctx) {
     this.x = position.x;
     this.y = position.y;
     this.ctx = ctx;
@@ -108,14 +108,14 @@ shapeTools.createSquare = function(position, ctx) {
         this.ctx.fillStyle = '#666';
       }
       if(this.selected){
-        this.ctx.strokeStyle = shapeTools.color;
+        this.ctx.strokeStyle = dynamicDiagram.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
       this.ctx.fill();
     };
   };
-  shapeTools.createRoundSquare = function(position, ctx) {
+  dynamicDiagram.createRoundSquare = function(position, ctx) {
     this.x = position.x;
     this.y = position.y;
     this.ctx = ctx;
@@ -137,7 +137,7 @@ shapeTools.createSquare = function(position, ctx) {
       }
       if(this.selected){
         this.ctx.fillStyle = '#ccc';
-        this.ctx.strokeStyle = shapeTools.color;
+        this.ctx.strokeStyle = dynamicDiagram.color;
         this.ctx.lineWidth = 10;
         this.ctx.rect(this.x - 50, this.y - 25, this.width, this.height);
       }
@@ -147,7 +147,7 @@ shapeTools.createSquare = function(position, ctx) {
       //this.ctx.restore();
     };
   };
-  shapeTools.createEllipse = function(position, ctx) {
+  dynamicDiagram.createEllipse = function(position, ctx) {
     this.x = position.x;
     this.y = position.y;
     this.ctx = ctx;
@@ -183,7 +183,7 @@ shapeTools.createSquare = function(position, ctx) {
       }
       this.ctx.closePath();
       if(this.selected){
-        this.ctx.strokeStyle = shapeTools.color;
+        this.ctx.strokeStyle = dynamicDiagram.color;
         this.ctx.lineWidth = 10;
         this.ctx.stroke();
       }
@@ -196,7 +196,7 @@ shapeTools.createSquare = function(position, ctx) {
 
 
 
-shapeTools.createCircle = function(position, ctx) {
+dynamicDiagram.createCircle = function(position, ctx) {
   this.x = position.x;
   this.y = position.y;
   this.ctx = ctx;
@@ -210,8 +210,8 @@ shapeTools.createCircle = function(position, ctx) {
       this.ctx.fillStyle = '#666';
     }
     if(this.selected){
-      console.log(shapeTools.color);
-      this.ctx.strokeStyle = shapeTools.color;
+      console.log(dynamicDiagram.color);
+      this.ctx.strokeStyle = dynamicDiagram.color;
       this.ctx.lineWidth = 10;
       this.ctx.stroke();
     }
@@ -221,7 +221,7 @@ shapeTools.createCircle = function(position, ctx) {
 };
 
 
-shapeTools.createDiamond = function(position, ctx) {
+dynamicDiagram.createDiamond = function(position, ctx) {
   this.x = position.x;
   this.y = position.y;
   this.ctx = ctx;
@@ -240,7 +240,7 @@ shapeTools.createDiamond = function(position, ctx) {
       this.ctx.fillStyle = '#666';
     }
     if(this.selected){
-      this.ctx.strokeStyle = shapeTools.color;
+      this.ctx.strokeStyle = dynamicDiagram.color;
       this.ctx.lineWidth = 10;
       this.ctx.stroke();
     }
@@ -248,7 +248,7 @@ shapeTools.createDiamond = function(position, ctx) {
   };
 };
 
-shapeTools.getShapeAtXY = function(x, y){
+dynamicDiagram.getShapeAtXY = function(x, y){
   var selectedShapeIndex;
 
   for (var index in this.shapeList){
@@ -273,7 +273,7 @@ shapeTools.getShapeAtXY = function(x, y){
   return selectedShapeIndex;
 };
 
-shapeTools.createText = function(ctx, position, text) {
+dynamicDiagram.createText = function(ctx, position, text) {
   this.x = position.x;
   this.y = position.y;
   this.ctx = ctx;
@@ -287,7 +287,7 @@ shapeTools.createText = function(ctx, position, text) {
 
 };
 
-shapeTools.reRender = function(){
+dynamicDiagram.reRender = function(){
     var self = this;
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.shapeList.forEach(function(item, index) {
@@ -311,17 +311,16 @@ shapeTools.reRender = function(){
     });
   };
 
-shapeTools.shapeList = [];
-shapeTools.shape = 'Square';
 
-shapeTools.init = function(options) {
-  shapeTools.clear();
 
+dynamicDiagram.init = function(options) {
+  dynamicDiagram.clear();
+  
+  this.shapeList = [];
+  this.shape = 'Rectangle';
   this.canvas = document.getElementById(options.id);
   this.ctx = canvas.getContext('2d');
   this.color = options.selectedColor;
-
-  console.log(shapeTools.color)
 
   this.canvas.width = this.canvas.parentNode.offsetWidth;
   this.width = this.canvas.width;
@@ -329,9 +328,13 @@ shapeTools.init = function(options) {
   this.moveHandler = null;
   this.stopHandler = null;
 
-
   var self = this;
-  //shapeTools.createSqure(context, {x: 60, y:90});
+
+  var items = document.querySelectorAll(options.shapesClass);
+  for (var i = 0; i < items.length; i++) {
+    dynamicDiagram.attachEvent(items, items[i]);
+  };
+  //dynamicDiagram.createSqure(context, {x: 60, y:90});
   this.canvas.addEventListener('contextmenu', function(event) {
     event.preventDefault();
     event.cancelBubble = true;
@@ -379,8 +382,8 @@ shapeTools.init = function(options) {
             left: event.clientX ,
             top: event.clientY
           });
-          shapeTools.deleteShape(index);
-          shapeTools.editShape(index);
+          dynamicDiagram.deleteShape(index);
+          dynamicDiagram.editShape(index);
         },50);
       }
     }else{
@@ -392,7 +395,7 @@ shapeTools.init = function(options) {
 
 };
 
-shapeTools.deleteShape = function(index) {
+dynamicDiagram.deleteShape = function(index) {
   console.log(index);
   var self = this;
   self.index = index;
@@ -402,7 +405,7 @@ shapeTools.deleteShape = function(index) {
 
 
 };
-shapeTools.editShape = function(index) {
+dynamicDiagram.editShape = function(index) {
   var self = this;
   self.index = index;
   document.getElementById('edit').removeEventListener('click', self.clickedDelete, false);
@@ -412,8 +415,8 @@ shapeTools.editShape = function(index) {
 };
 
 
-shapeTools.clickedDelete = function(event){
-  var self = shapeTools;
+dynamicDiagram.clickedDelete = function(event){
+  var self = dynamicDiagram;
   document.getElementById('contextMenu').style.display = 'none';
   event.stopPropagation();
   self.shapeList.splice(self.index, 1);
@@ -423,8 +426,8 @@ shapeTools.clickedDelete = function(event){
 };
 
 
-shapeTools.clickedEdit = function(event){
-    var self = shapeTools;
+dynamicDiagram.clickedEdit = function(event){
+    var self = dynamicDiagram;
     document.getElementById('delete').removeEventListener('click', self.clickedDelete, false);
     document.getElementById('editText').removeEventListener('click', buttonClicked, false);
     var popup = {
@@ -468,9 +471,9 @@ shapeTools.clickedEdit = function(event){
     return false;
   };
 
-shapeTools.createSape = function(pos, event) {
-  shapeTools.pos = {};
-  shapeTools.pos = pos;
+dynamicDiagram.createSape = function(pos, event) {
+  dynamicDiagram.pos = {};
+  dynamicDiagram.pos = pos;
   var box = document.getElementById('boxText');
   var popup = {
     x: event.clientX,
@@ -496,7 +499,7 @@ shapeTools.createSape = function(pos, event) {
     var innerText = box.value;
     if(innerText.length > 0){
       box.value = '';
-      shapeTools.shapeAdder(innerText, shapeTools.pos);
+      dynamicDiagram.shapeAdder(innerText, dynamicDiagram.pos);
       document.getElementById('addText').removeEventListener('click', clicked, false);
     }
     return false;
@@ -507,7 +510,7 @@ shapeTools.createSape = function(pos, event) {
 
 };
 
-shapeTools.shapeAdder = function(innerText, pos) {
+dynamicDiagram.shapeAdder = function(innerText, pos) {
   var item = new this['create' + this.shape](pos, this.ctx);
       item.type = this.shape;
       item.active = false;
@@ -517,9 +520,9 @@ shapeTools.shapeAdder = function(innerText, pos) {
       return false;
 };
 
-shapeTools.attachEvent = function(list, item) {
+dynamicDiagram.attachEvent = function(list, item) {
   item.addEventListener('click', function() {
-    shapeTools.shape = item.id;
+    dynamicDiagram.shape = item.id;
     for (var i = 0; i < list.length; i++) {
       list[i].classList.remove('active');
     }
@@ -527,7 +530,7 @@ shapeTools.attachEvent = function(list, item) {
   });
 };
 
-shapeTools.drag = function(self, item, rect){
+dynamicDiagram.drag = function(self, item, rect){
   document.body.style.cursor='move';
   self.shapeList[item].selected = true;
   self.reRender();
@@ -552,12 +555,12 @@ shapeTools.drag = function(self, item, rect){
   }, false);
 };
 
-shapeTools.clear = function() {
+dynamicDiagram.clear = function() {
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
   var button = document.getElementById('clear');
   button.addEventListener('click', function() {
-    shapeTools.shapeList = [];
+    dynamicDiagram.shapeList = [];
     context.clearRect(0, 0, canvas.width, canvas.height);
   });
 };
