@@ -20,10 +20,10 @@
     var size = {
       height : el1.clientHeight,
       width : el1.clientWidth,
-    }
+    };
     el1.remove();
     return size;
-  };
+  }
   dynamicDiagram.createPath = function(ctx, points) {
     this.ctx = ctx;
     this.ctx.strokeStyle = '#ccc';
@@ -306,6 +306,11 @@
 
       });
       this.shapeList.forEach(function(item, index) {
+        if(index === 0){
+          item.active = true;
+        }else{
+          item.active = false;
+        }
         item.render();
         item.text.render();
       });
@@ -334,11 +339,11 @@
     var items = document.querySelectorAll(options.shapesClass);
     for (var i = 0; i < items.length; i++) {
       dynamicDiagram.attachEvent(items, items[i]);
-    };
+    }
 
     // load saved items
     if(this.shapeList.length > 0){
-      for(var i=0; i<this.shapeList.length ; i++){
+      for(i = 0; i<this.shapeList.length ; i++){
         this.shapeList[i].ctx = this.ctx;
         var temp = new this['create'+this.shapeList[i].type]({x: this.shapeList.x,y: this.shapeList.y},this.ctx);
         var tempText = new this.createText(this.ctx,
@@ -535,7 +540,7 @@
   };
   dynamicDiagram.getShapeList = function() {
     return JSON.stringify(dynamicDiagram.shapeList);
-  }
+  };
 
   dynamicDiagram.attachEvent = function(list, item) {
     item.addEventListener('click', function() {
