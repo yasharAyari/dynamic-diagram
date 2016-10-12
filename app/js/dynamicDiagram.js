@@ -132,9 +132,9 @@
         this.ctx.beginPath();
         this.ctx.strokeStyle = '#ccc';
         this.ctx.fillStyle = '#ccc';
-        this.ctx.strokeRect(this.x - 50 + (this.ctx.lineWidth/2), this.y - 25 + (this.ctx.lineWidth/2), this.width - this.ctx.lineWidth, this.height - this.ctx.lineWidth);
         if(this.active){
           this.ctx.fillStyle = '#8a8888';
+          this.ctx.strokeStyle = '#8a8888';
         }
         if(this.selected){
           this.ctx.fillStyle = '#ccc';
@@ -142,6 +142,7 @@
           this.ctx.lineWidth = 10;
           this.ctx.rect(this.x - 50, this.y - 25, this.width, this.height);
         }
+        this.ctx.strokeRect(this.x - 50 + (this.ctx.lineWidth/2), this.y - 25 + (this.ctx.lineWidth/2), this.width - this.ctx.lineWidth, this.height - this.ctx.lineWidth);
         this.ctx.closePath();
         this.ctx.stroke();
         this.ctx.fill();
@@ -183,6 +184,9 @@
           drawEllipse(this.ctx, this.x, this.y, this.width, this.height);
         }
         this.ctx.closePath();
+        if(this.active){
+          this.ctx.fillStyle = '#8a8888';
+        }
         if(this.selected){
           this.ctx.strokeStyle = dynamicDiagram.color;
           this.ctx.lineWidth = 10;
@@ -208,7 +212,7 @@
       this.ctx.arc(this.x, this.y, this.size/2, 0, 2 * Math.PI);
       this.ctx.closePath();
       if(this.active){
-        this.ctx.fillStyle = '#666';
+        this.ctx.fillStyle = '#8a8888';
       }
       if(this.selected){
         this.ctx.strokeStyle = dynamicDiagram.color;
@@ -237,7 +241,7 @@
       this.ctx.lineTo(this.x, this.y - this.size/2);
       this.ctx.closePath();
       if(this.active){
-        this.ctx.fillStyle = '#666';
+        this.ctx.fillStyle = '#8a8888';
       }
       if(this.selected){
         this.ctx.strokeStyle = dynamicDiagram.color;
