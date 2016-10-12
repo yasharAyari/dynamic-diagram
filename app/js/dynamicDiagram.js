@@ -52,7 +52,7 @@
         this.ctx.closePath();
         this.ctx.fillStyle = '#ccc';
         if(this.active){
-          this.ctx.fillStyle = '#666';
+          this.ctx.fillStyle = '#8a8888';
         }
         if(this.selected){
           this.ctx.strokeStyle = dynamicDiagram.color;
@@ -78,7 +78,7 @@
         this.ctx.closePath();
         this.ctx.fillStyle = '#ccc';
         if(this.active){
-          this.ctx.fillStyle = '#666';
+          this.ctx.fillStyle = '#8a8888';
         }
         if(this.selected){
           this.ctx.strokeStyle = dynamicDiagram.color;
@@ -106,7 +106,7 @@
         this.ctx.lineTo(this.x - 35 , this.y  - this.size/2);
         this.ctx.closePath();
         if(this.active){
-          this.ctx.fillStyle = '#666';
+          this.ctx.fillStyle = '#8a8888';
         }
         if(this.selected){
           this.ctx.strokeStyle = dynamicDiagram.color;
@@ -134,7 +134,7 @@
         this.ctx.fillStyle = '#ccc';
         this.ctx.strokeRect(this.x - 50 + (this.ctx.lineWidth/2), this.y - 25 + (this.ctx.lineWidth/2), this.width - this.ctx.lineWidth, this.height - this.ctx.lineWidth);
         if(this.active){
-          this.ctx.fillStyle = '#666';
+          this.ctx.fillStyle = '#8a8888';
         }
         if(this.selected){
           this.ctx.fillStyle = '#ccc';
