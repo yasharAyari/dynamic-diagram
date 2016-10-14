@@ -40,14 +40,7 @@ module.exports = function (grunt) {
           hostname: '0.0.0.0',
           middleware : function (connect) {
             return [
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ).use(
-                '/src',
-                connect.static('./src')
-              ),
-              connect.static('./example')
+              connect.static('./')
               ]
           }
         }

@@ -32,7 +32,7 @@ $ npm install
 $ bower install
 grunt serve
 ```
-3. Open 'http://localhost:9001' on your faverite browser 
+3. Open 'http://localhost:9001/example' on your faverite browser 
 
 ------------------------------------------------
 
