@@ -13,8 +13,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-            'app/css/main-rtl.css': 'app/sass/main-rtl.scss',
-            'app/css/main-ltr.css': 'app/sass/main-ltr.scss'
+            'src/css/dynamicDiagram-rtl.css': 'src/sass/dynamicDiagram-rtl.scss',
+            'src/css/dynamicDiagram-ltr.css': 'src/sass/dynamicDiagram-ltr.scss'
         }
       }
     },
@@ -25,20 +25,9 @@ module.exports = function (grunt) {
       },
       dist:{
         files:{
-          'app/css/main-rtl.css':'app/css/main-rtl.css',
-          'app/css/main-ltr.css':'app/css/main-ltr.css'
+          'src/css/dynamicDiagram-rtl.css':'src/css/dynamicDiagram-rtl.css',
+          'src/css/dynamicDiagram-ltr.css':'src/css/dynamicDiagram-ltr.css'
         }
-      }
-    },
-    // inject bower component into index.html file
-    wiredep: {
-      app: {
-        src: ['app/index.html', 'app/login.html', 'app/company.html'],
-        ignorePath:  /\.\.\//
-      },
-      sass: {
-        src: ['app/sass/{,*/}*.{scss,sass}'],
-        //ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
     // build node js server
@@ -54,8 +43,11 @@ module.exports = function (grunt) {
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
+              ).use(
+                '/src',
+                connect.static('./src')
               ),
-              connect.static('./app')
+              connect.static('./example')
               ]
           }
         }
@@ -68,14 +60,14 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['app/js/{,*/}*.js'],
+        files: ['src/js/{,*/}*.js'],
         tasks: ['jshint:serve'],
         options: {
           livereload: '<%= connect.target.options.livereload %>'
         }
       },
       sass: {
-        files: ['app/sass/{,*/}*.{scss,sass}'],
+        files: ['src/sass/{,*/}*.{scss,sass}'],
         tasks: ['sass','autoprefixer'],
         options: {
           livereload: '<%= connect.target.options.livereload %>'
@@ -89,8 +81,8 @@ module.exports = function (grunt) {
           livereload: '<%= connect.target.options.livereload %>'
         },
         files: [
-          'app/**/*.html',
-          'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          'example/**/*.html',
+          'example/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       },
       options: {
@@ -99,7 +91,7 @@ module.exports = function (grunt) {
     },
     // minfy css and javascript files
     useminPrepare: {
-      html: 'app/index.html'
+      html: 'example/index.html'
     },
     // replace all javascript and css files with minfy one in html
     usemin: {
@@ -134,8 +126,8 @@ module.exports = function (grunt) {
       },
       css: {
         files:[
-          {src: 'app/css/main-rtl.css',dest: 'dist/css/main-rtl.css'},
-          {src: 'app/css/main-ltr.css',dest: 'dist/css/main-ltr.css'}
+          {src: 'src/css/dynamicDiagram-rtl.css',dest: 'dist/css/dynamicDiagram-rtl.css'},
+          {src: 'src/css/dynamicDiagram-ltr.css',dest: 'dist/css/dynamicDiagram-ltr.css'}
         ]
       },
       develop: {
@@ -160,7 +152,7 @@ module.exports = function (grunt) {
       serve: {
         options: {
         },
-        src: ['app/js/**/*.js','!app/js/vendor/**',],
+        src: ['src/js/**/*.js','!scr/js/vendor/**',],
       },
     },
     ngAnnotate: {
@@ -178,39 +170,11 @@ module.exports = function (grunt) {
     },
   });
 
-  grunt.registerTask('build',[
-    'wiredep',
-    'sass',
-    'autoprefixer',
-    'clean:build',
-    'useminPrepare:html',
-    'concat',
-    'uglify',
-    'cssmin',
-    'copy:build',
-    'usemin'
-  ]);
-
 
   grunt.registerTask('build:server',[
-    'wiredep',
-    'copy:develop',
     'sass',
     'autoprefixer',
     'jshint:serve'
-  ]);
-  grunt.registerTask('build:pro',[
-    'wiredep',
-    'sass',
-    'autoprefixer',
-    'clean:build',
-    'useminPrepare:html',
-    'concat',
-    'uglify',
-    'cssmin',
-    'copy:build',
-    'copy:css',
-    'usemin'
   ]);
 
   grunt.registerTask('serve', ['build:server','connect:target','watch']);

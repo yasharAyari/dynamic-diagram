@@ -3,34 +3,7 @@
 @import "../../bower_components/sass-direction-controller/sass/_direction-controller.scss";
 // endbower
 
-@import "_icons.scss";
-@font-face {
-    font-family: 'yekan';
-    src: url('../fonts/WebYekan/WebYekan.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/WebYekan/WebYekan.woff') format('woff'),
-        url('../fonts/WebYekan/WebYekan.ttf') format('truetype'),
-        url('../fonts/WebYekan/WebYekan.svg') format('svg');
-    font-weight: 400;
-    font-style: normal;
 
-}
-@font-face {
-    font-family: 'iranianSans';
-    src: url('../fonts/iransans/IranianSansWeb-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/iransans/IranianSansWeb-Regular.woff') format('woff'),
-        url('../fonts/iransans/IranianSansWeb-Regular.ttf') format('truetype'),
-        url('../fonts/iransans/IranianSansWeb-Regular.svg') format('svg');
-    font-weight: 400;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'iranianSansBold';
-    src: url('../fonts/iransans/IranianSansWeb-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-}
 a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
@@ -38,28 +11,6 @@ a, a:hover, a:focus {
 .shadow-box.hasscroll{
     height: 240px;
     overflow: scroll;
-}
-    // src: url('WebRoya.eot');
-    // src: url('WebRoya.eot?#iefix') format('embedded-opentype'),
-    //      url('WebRoya.woff') format('woff'),
-    //      url('WebRoya.ttf') format('truetype'),
-    //      url('WebRoya.svg#WebRoya') format('svg');
-$gridTotalWidth: 1200;
-
-@for $i from 1 through 12{
-    .fix-col-#{$i}{
-        width: #{$gridTotalWidth / $i}px;
-        padding: 5px;
-        float: left;
-        direction: rtl;
-    }
-}
-.fix-row{
-    width: 100%;
-    direction: ltr;
-    .wrapper{
-        direction: ltr;
-    }
 }
 
 
@@ -82,7 +33,6 @@ $gridTotalWidth: 1200;
         position: absolute;
         line-height: 45px;
         padding-right: 0;
-        font-family: iranianSansBold;
         pointer-events: none;
         font-size: 12px;
         width: 100%;
@@ -147,7 +97,7 @@ html{
     direction: ltr;
 }
 body{
-    font-family: iranianSans;
+    font-family: Arial;
     font-size: 14px;
     display: block;
     background: #E0E0E1;
@@ -160,7 +110,7 @@ body{
     //background: url('../images/14.jpg') center no-repeat;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-    font-family: yekan;
+    font-family: Arial;
 }
 .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
     @include if-rtl{

@@ -5,8 +5,15 @@
     "amd"
   ],
   "authors": [
-    "yashar"
+    "yashar ayari"
   ],
+  "description": "A DOM utility helper",
+  "main": [
+  	"src/js/dynamicDiagram.js",
+  	"src/css/dynamicDiagram-ltr.css",
+  	"src/css/dynamicDiagram-rtl.css"
+  ]
+
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -18,9 +25,6 @@
   "dependencies": {
     "jquery": "*",
     "bootstrap-sass-rtl": "*",
-    "html5shiv": "~3.7.3",
-    "sass-bootstrap": "~3.0.2",
-    "bootstrap": "~3.3.6",
     "sass-direction-controller": "~1.0.2"
   },
   "overrides": {
