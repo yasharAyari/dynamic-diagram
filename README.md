@@ -1,6 +1,6 @@
-# this is dynamic digram home page
-this is a small library that base on html5 canvas. it helps you to create flowchart as easy as possible.
-### demos
+# Dynamic digram home page
+Dynamic digram is a small library that base on html5 canvas. It helps you to create flowchart as easy as possible.
+## Demos
 ######[main demo](https://yasharayari.github.io/dynamic-diagram/example/index.html)
 ######[right to left demo](https://yasharayari.github.io/dynamic-diagram/example/index-rtl.html)
 
