@@ -12,8 +12,7 @@
   	"src/js/dynamicDiagram.js",
   	"src/css/dynamicDiagram-ltr.css",
   	"src/css/dynamicDiagram-rtl.css"
-  ]
-
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
