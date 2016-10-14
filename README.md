@@ -6,7 +6,7 @@ this is a small library that base on html5 canvas. it helps you to create flowch
 
 ## Installation
 
-Download smallSelector:
+Download dynamic-diagram:
 
 - With Bower:
 
