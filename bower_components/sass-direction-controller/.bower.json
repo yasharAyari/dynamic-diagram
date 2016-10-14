@@ -1,0 +1,17 @@
+{
+  "name": "sass-direction-controller",
+  "version": "1.0.2",
+  "main": "sass/_direction-controller.scss",
+  "ignore": [],
+  "private": false,
+  "homepage": "https://github.com/parhumm/sass-direction-controller",
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.2",
+    "commit": "353ab6eee039486375374d53688891a52f2db986"
+  },
+  "_source": "https://github.com/parhumm/sass-direction-controller.git",
+  "_target": "~1.0.2",
+  "_originalSource": "sass-direction-controller"
+}
