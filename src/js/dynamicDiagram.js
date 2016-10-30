@@ -325,7 +325,40 @@
 
   dynamicDiagram.init = function(options) {
     dynamicDiagram.clear();
-    
+
+    if(navigator.userAgent.match('Anroid|iPad|iPhone')){
+      dynamicDiagram.events = {
+        start: 'touchstart',
+        move: 'touchmove',
+        end: 'touchend',
+      };
+    }else{
+      dynamicDiagram.events = {
+        start: 'mousedown',
+        move: 'mousemove',
+        end: 'mouseup'
+      };
+    }
+    // simulate log tap in touch devices
+    var _timer = function(interval, event, index){
+      interval--;
+      if(interval > 0){
+        dynamicDiagram.hold = setTimeout(function(){
+          _timer(interval, event, index);
+        },1);
+      }else{
+        setTimeout(function(){
+            _css('.m-contextMenu', {
+              display: 'block',
+              left: event.touches[0].clientX ,
+              top: event.touches[0].clientY
+            });
+            dynamicDiagram.deleteShape(index);
+            dynamicDiagram.editShape(index);
+          },50);
+      }
+    };
+
     this.shapeList = options.shapeList ? options.shapeList : [];
     this.shape = 'Rectangle';
     this.canvas = document.getElementById(options.id);
@@ -366,38 +399,45 @@
       return false;
     });
 
-    document.addEventListener('mousedown', function(event) {
+    document.addEventListener(dynamicDiagram.events.start, function(event) {
       document.getElementsByClassName('m-contextMenu')[0].style.display = 'none';
       document.getElementById('popover').style.display = 'none';
       document.getElementById('editBox').style.display = 'none';
     });
-    document.getElementById('popover').addEventListener('mousedown', function(event) {
+    document.getElementById('popover').addEventListener(dynamicDiagram.events.start, function(event) {
       event.stopPropagation();
     });
-    document.getElementById('editBox').addEventListener('mousedown', function(event) {
+    document.getElementById('editBox').addEventListener(dynamicDiagram.events.start, function(event) {
       event.stopPropagation();
     });
-    document.getElementById('contextMenu').addEventListener('mousedown', function(event) {
+    document.getElementById('contextMenu').addEventListener(dynamicDiagram.events.start, function(event) {
       event.stopPropagation();
     });
 
-    this.canvas.addEventListener('mousedown', function(event) {
-
+    this.canvas.addEventListener(dynamicDiagram.events.start, function(event) {
+      console.log(event);
       var rect = canvas.getBoundingClientRect(),
           pos = {},
           index;
       // store postion of current click
-
-      pos.x = event.clientX - rect.left;
-      pos.y = event.clientY - rect.top;
+      if(event.touches){
+        pos.x = event.touches[0].clientX - rect.left;
+        pos.y = event.touches[0].clientY - rect.top;
+      }else{
+        pos.x = event.clientX - rect.left;
+        pos.y = event.clientY - rect.top;
+      }
+      
 
       if(self.getShapeAtXY(pos.x, pos.y)){
         document.getElementById('popover').style.display = 'none';
         document.getElementById('editBox').style.display = 'none';
           index = self.getShapeAtXY(pos.x, pos.y);
-        if(event.button === 0){
+        if(event.button === 0 || event.touches){
           self.reRender();
+          _timer(150, event, index);
           self.drag(self, index, rect);
+
         }
         if(event.button === 2){
           setTimeout(function(){
@@ -411,8 +451,8 @@
           },50);
         }
       }else{
-        if(event.button === 0){
-          self.createSape(pos, event);
+        if(event.button === 0 || event.touches){
+          self.createShape(pos, event);
         }
       }
     });
@@ -494,14 +534,23 @@
       return false;
     };
 
-  dynamicDiagram.createSape = function(pos, event) {
+  dynamicDiagram.createShape = function(pos, event) {
     dynamicDiagram.pos = {};
     dynamicDiagram.pos = pos;
     var box = document.getElementById('boxText');
-    var popup = {
-      x: event.clientX,
-      y: event.clientY
-    };
+    var popup = {};
+    if(event.touches){
+      popup = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY
+      };
+    }else{
+      popup = {
+        x: event.clientX,
+        y: event.clientY
+      };
+    }
+    
 
     setTimeout(function() {
       _css("#popover",{
@@ -518,7 +567,8 @@
 
     var clicked = function(event){
       event.stopPropagation();
-      document.getElementById("popover").style = 'none';
+
+      document.getElementById("popover").style.display = 'none';
       var innerText = box.value;
       if(innerText.length > 0){
         box.value = '';
@@ -562,20 +612,30 @@
     self.reRender();
 
     self.moveHandler = function(event) {
-      self.shapeList[item].x = event.clientX - rect.left;
-      self.shapeList[item].y = event.clientY- rect.top;
-      self.shapeList[item].text.x = event.clientX - rect.left;
-      self.shapeList[item].text.y = event.clientY- rect.top;
+      clearTimeout(dynamicDiagram.hold);
+      event.preventDefault();
+      if(event.touches){
+        self.shapeList[item].x = event.touches[0].clientX - rect.left;
+        self.shapeList[item].y = event.touches[0].clientY- rect.top;
+        self.shapeList[item].text.x = event.touches[0].clientX - rect.left;
+        self.shapeList[item].text.y = event.touches[0].clientY- rect.top;
+      }else{
+        self.shapeList[item].x = event.clientX - rect.left;
+        self.shapeList[item].y = event.clientY- rect.top;
+        self.shapeList[item].text.x = event.clientX - rect.left;
+        self.shapeList[item].text.y = event.clientY- rect.top;
+      }
       self.reRender();
     };
 
-    self.canvas.addEventListener('mousemove', self.moveHandler, false);
+    self.canvas.addEventListener(dynamicDiagram.events.move , self.moveHandler, false);
 
-    document.addEventListener('mouseup', function(event) {
+    document.addEventListener(dynamicDiagram.events.end, function(event) {
+      clearTimeout(dynamicDiagram.hold);
       if(item >= 0  && self && self.shapeList && self.shapeList.length > 0){
         self.shapeList[item].selected = false;
       }
-      self.canvas.removeEventListener('mousemove', self.moveHandler, false);
+      self.canvas.removeEventListener(dynamicDiagram.events.move, self.moveHandler, false);
       self.reRender();
       document.body.style.cursor='default';
     }, false);

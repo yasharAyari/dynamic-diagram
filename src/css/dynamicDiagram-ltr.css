@@ -2,9 +2,11 @@ a, a:hover, a:focus {
   color: inherit;
   text-decoration: none; }
 
-.shadow-box.hasscroll {
-  height: 240px;
-  overflow: scroll; }
+canvas {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
 
 .toolbar {
   padding: 0; }
@@ -70,17 +72,12 @@ html {
   direction: ltr; }
 
 body {
-  font-family: Arial;
   font-size: 14px;
   display: block;
   background: #E0E0E1;
   display: block;
   width: 100%;
-  overflow: hidden;
   background-position: 98% 65px; }
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: Arial; }
 
 .list-group-item {
   border: none;
