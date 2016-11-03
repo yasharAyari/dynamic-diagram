@@ -1,9 +1,9 @@
 # Dynamic digram
 Dynamic digram is a small library that base on html5 canvas. It soppurt touch interface on mobile devices. It helps you to create flowchart as easy as possible.
 #### add a shape
--First, click on a shape on the tool box and make it active.
--Then, click on the chart box to make the pop up visible.
--Finaly, type your custom text inside textbox an click on ad button.
+- First, click on a shape on the tool box and make it active.
+- Then, click on the chart box to make the pop up visible.
+- Finaly, type your custom text inside textbox an click on ad button.
 
 *You can right click on a shape(tap and hold on a shape on touch devices) to make the options menu visible.
 ## Demos
